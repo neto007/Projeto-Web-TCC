@@ -1,0 +1,28 @@
+<div class="{{::$ctrl.styles.default}}">
+    <div flex-xs flex-gt-xs="100" layout="row">
+        <md-list layout="row" layout-wrap>
+            <md-list-item flex="20" flex-sm="100" class="md-2-line" ng-repeat="galeria in $ctrl.galerias">
+                <md-item>
+                    <md-item-content layout="row">
+                        <md-card>
+                            <img ng-src="https://vignette1.wikia.nocookie.net/fdk/images/8/8a/Captain-jack-sparrow.jpg/revision/latest?cb=20140730131439&path-prefix=de" class="md-card-image" alt="Washed Out">
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button class="md-icon-button" ng-click="$ctrl.visualizarFoto(galeria.id)">
+                                    <ng-md-icon icon="visibility">
+                                    </ng-md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" ng-click="$ctrl.removerFoto(galeria.id)">
+                                    <ng-md-icon icon="delete">
+                                    </ng-md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </md-item-content>
+                </md-item>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>
+
+<label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
+<input id='selecao-arquivo' type='file'>

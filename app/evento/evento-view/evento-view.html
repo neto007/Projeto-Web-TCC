@@ -1,0 +1,128 @@
+<div class="{{::$ctrl.styles.default}}" layout="column" layout-align="center center">
+
+    <form name="eventoForm" ng-submit="$ctrl.salvar(eventoForm.$valid)" novalidate>
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div class="wrap" flex="50">
+                <md-card>
+                    <div flex="50">
+                        <div class="thumb"> <img class="img" style="height: 500px; width: 472px;" src="{{ $ctrl.evento.imagem }}" /></div>
+                    </div>
+                </md-card>
+            </div>
+            <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card class="{{::$ctrl.styles.cardEvento}}">
+                    <md-card-title>
+                        <md-card-title-text>
+                                <md-card-content>
+                                    <h1><labe>Nome do Evento</labe></h1>
+                                    <p><font size="4"> {{ $ctrl.evento.nome }}</font></p>
+                                </md-card-content>
+
+                             <md-card-content>
+                                    <h1><labe>Nome do Estabelecimento</labe></h1>
+                                    <p><font size="4"> {{ $ctrl.evento.estabelecimento.nome }}</font></p>
+                            </md-card-content>                                 
+
+
+                            <md-card-content>
+                                   <h1><labe>Descrição</labe></h1>
+                                    <p><font size="4"> {{ $ctrl.evento.descricao }}</font></p>
+                                    
+                            
+
+                            
+                                <div layout="column">
+                                    <div layout="column" layout-align="start" flex>
+                                                <br>
+                                                <br>
+                                                <label><b>Data: {{ $ctrl.evento.data | date }} </b></label>
+                                        
+                                    </div>
+                                </div>
+                            
+
+                        </md-card-title-text>
+                    </md-card-title>
+                </md-card>
+            </div>
+        </md-content>
+        <md-content class="md-padding">
+            <div>
+                <md-card>
+                    <md-toolbar class="md-raised md-primary">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-flex">Contatos</h2>
+                        </div>
+                    </md-toolbar>
+                    <div layout="column" layout-padding ng-cloak>
+                        <div layout="row" layout-align="start center">
+                            <ng-md-icon icon="phone"></ng-md-icon>
+                                <label><b>Telefone:</b> {{ $ctrl.evento.telefone }}</label>
+                        </div>
+                        <div layout="row" layout-align="start center">
+                            <ng-md-icon icon="smartphone"></ng-md-icon>
+                                <label><b>Celular:</b> {{ $ctrl.evento.celular }}</label>
+                        </div>
+                    </div>
+                </md-card>
+            </div>
+        </md-content>
+
+        <md-content class="md-padding">
+            <md-card>
+                <md-toolbar class="md-raised md-primary">
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">Endereço</h2>
+                    </div>
+                </md-toolbar>
+                <div layout="row" layout-padding ng-cloak>
+                    <div flex="70">
+
+                            <label><b>Rua:</b> {{ $ctrl.evento.rua }}</label>
+
+                    </div>
+                    <div flex="10">
+
+                            <label><b>Nº:</b> {{ $ctrl.evento.numero }}</label>
+
+                    </div>
+                    <div flex="20">
+                            <label><b>Bairro:</b> {{ $ctrl.evento.bairro }}</label>
+                    </div>
+                </div>
+                <div layout="row" layout-padding>
+                        <div flex="70">
+                                <label><b>Cidade:</b> {{ $ctrl.evento.cidade }}</label>
+                        </div>
+                        <div flex="15">
+                                <label><b>Estado:</b> {{ $ctrl.evento.estado }}</label>
+                        </div>
+                        <div flex="15">
+                                <label><b>CEP:</b> {{ $ctrl.evento.cep }}</label>
+                        </div>
+                </div>
+            </md-card>
+        </md-content>
+
+        <md-content class="md-padding">
+            <div layout="column">
+                <md-card>
+                    <md-toolbar class="md-raised md-primary">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-flex">Localização</h2>
+                        </div>
+                    </md-toolbar>
+                    <div map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4jbdsAFxqfnElEl4zpWOepaVrX4F4P18">
+                        <ng-map center="{{ $ctrl.evento.rua + ', ' + $ctrl.evento.numbero + ', ' + $ctrl.evento.cidade + ', ' + $ctrl.evento.estado + ', Brasil'}}">
+                            <marker position="{{ $ctrl.evento.rua + ', ' + $ctrl.evento.numbero + ', ' + $ctrl.evento.cidade + ', ' + $ctrl.evento.estado + ', Brasil'}}"></marker>
+                        </ng-map>
+                    </div>
+                </md-card>
+            </div>
+        </md-content>
+
+        <div layout="row" layout-align="end end" class="text-right">
+          <md-button type="button" class="md-raised" ui-sref="evento-list">Voltar</md-button>
+        </div>
+    </form>
+</div>

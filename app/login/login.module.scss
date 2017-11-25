@@ -1,0 +1,30 @@
+.login {
+  overflow: hidden;
+}
+
+.loginBox {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.divLogo img{
+  position: absolute;
+  max-height: auto;
+  max-width: 15%;
+  left: 49%;
+  bottom: 40%;
+  transform: translate(-50%, -50%);
+}
+
+md-input-container {
+    margin: 1% 0; 
+}
+
+.fullscreen-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(75,0,130);
+  transform: translate(-50%, -50%);
+}

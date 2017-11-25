@@ -1,0 +1,37 @@
+<div class="{{::$ctrl.styles.default}}">
+</div>
+<md-list layout="row" layout-wrap layout-xs="column">
+    <md-item ng-repeat="estabelecimento in $ctrl.estabelecimentos">
+        <md-item-content layout="row" layout-align="start center">
+                 <div flex="25">
+                    <md-card class="{{$ctrl.styles.cardEstabelecimento}}">
+                        <img class="md-card-image {{$ctrl.styles.imagemEstabelecimento}}" src="{{ estabelecimento.imagem }}"  />
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{ estabelecimento.nome }}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button ui-sref="usuario-list({id: estabelecimento.id})" class="md-icon-button">
+                                <ng-md-icon icon="person"></ng-md-icon>
+                            </md-button>
+                            <md-button ui-sref="galeria-list({id: estabelecimento.id})" class="md-icon-button">
+                                <ng-md-icon icon="wallpaper"></ng-md-icon>
+                            </md-button>
+                            <md-button ui-sref="estabelecimento-edit({id: estabelecimento.id})" class="md-icon-button">
+                                <ng-md-icon icon="create"></ng-md-icon>
+                            </md-button>
+                            <md-button ng-click="$ctrl.removerEstabelecimento(estabelecimento.id)" class="md-icon-button">
+                                <ng-md-icon icon="delete"></ng-md-icon>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+        </md-item-content>
+    </md-item>
+</md-list>
+
+<md-button class="md-fab md-primary md-fab-bottom-right md-icon-button" ui-sref="estabelecimento-create">
+    <ng-md-icon icon="add" class="{{::$ctrl.styles.botaoAdd}}">
+        </md-icon>
+</md-button>

@@ -1,0 +1,36 @@
+
+<!--<div class="{{::$ctrl.styles.default}}">
+    <div flex-xs flex-gt-xs="100" layout="row">
+     
+      <md-card>
+        <img ng-src="https://vignette1.wikia.nocookie.net/fdk/images/8/8a/Captain-jack-sparrow.jpg/revision/latest?cb=20140730131439&path-prefix=de" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+
+                <md-button class="md-icon-button">
+                    <ng-md-icon icon="visibility"></ng-md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button" ng-click="$ctrl.removerVoucher(voucher.id)">
+                    <ng-md-icon icon="delete">
+      
+                    </ng-md-icon>
+                </md-button>
+
+        </md-card-actions>
+      </md-card>
+
+    </div>
+</div>
+-->
+
+ <md-dialog aria-label="Incluir Foto na Galeria">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Coloque o diretório da Foto</h2>
+        </div>
+     </md-toolbar>
+     <md-dialog-actions layout="row" layout-align="start center">
+        <md-button class="md-accent md-raised" ng-click="$ctrl.hide()">NÃO</md-button>
+        <md-button class="md-warn md-raised"  ng-click="$ctrl.removerFoto()">SIM</md-button>
+    </md-dialog-actions>
+ </md-dialog>

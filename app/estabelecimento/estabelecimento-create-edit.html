@@ -1,0 +1,168 @@
+<navbar></navbar>
+
+<main>
+
+    <div ng-cloak class="md-inline-form">
+
+        <md-content layout-padding layout="column">
+            <form name="estabelecimentoForm" ng-submit="$ctrl.salvar(estabelecimentoForm.$valid)" novalidate>
+                <div flex="20" style="float:left">
+                    <md-card>
+                        <input type="file" style="visibility: hidden;" id="estabelecimento-image" ng-model="$ctrl.estabelecimento.imagem" base-sixty-four-input />
+                        <label for="estabelecimento-image">
+                            <img style="width: 100%;" ng-if="$ctrl.estabelecimento.imagem.base64" ng-src="data:image/png;base64,{{$ctrl.estabelecimento.imagem.base64}}" class="md-card-image" alt="Washed Out">
+                            <md-card-actions layout="row" layout-align="start">
+                                <md-button class="md-icon-button">
+                                    <ng-md-icon icon="file_upload"></ng-md-icon>
+                                </md-button>
+                                <p>{{$ctrl.estabelecimento.imagem.base64 ? 'Alterar' : 'Enviar'}} imagem</p>
+                            </md-card-actions>
+                        </label>
+                    </md-card>
+                </div>
+                <div layout="row" layout-wrap="true" layout-align="start">
+                    <div flex="70">
+                        <md-input-container md-no-float class="md-block">
+
+                            <label>Nome do estabelecimento</label>
+                            <input ng-model="$ctrl.estabelecimento.nome" name="nome" required minlength="3" maxlength="40" />
+
+                            <div ng-messages="estabelecimentoForm.nome.$error" style="color:red" role="alert">
+                                <div ng-message="required">É necessário preencher um nome.</div>
+                                <div ng-message="minlength">Nome deverá ter no mínimo 3 caracteres.</div>
+                            </div>
+
+                        </md-input-container>
+                    </div>
+                    <div flex="30">
+                        <md-input-container md-no-float class="md-block">
+                            <label>CNPJ</label>
+                            <input ng-model="$ctrl.estabelecimento.cnpj" ui-mask="99.99.999/9999-99" required/>
+                        </md-input-container>
+                    </div>
+                
+                    <div flex="70">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Descrição</label>
+                            <textarea ng-model="$ctrl.estabelecimento.descricao" md-maxlength="150" maxlength="150" required rows="2" md-select-on-focus/></textarea>
+                        </md-input-container>
+                    </div>
+                    <div flex="30">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Categoria</label>
+                            <md-select required ng-readonly="$ctrl.carregandoCategoria" ng-model="$ctrl.estabelecimento.idCategoria" placeholder="Categoria" class="md-no-underline">
+                                <md-option value="" selected ng-if="$ctrl.carregandoCategoria">Carregando...</md-option>
+                                <md-option ng-repeat="categoria in $ctrl.categorias" ng-value="categoria.id">{{categoria.nome}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row">
+                    <div flex="30">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Telefone</label>
+                            <input ng-model="$ctrl.estabelecimento.telefone" ui-mask="(99) 9?9999-9999" required />
+                        </md-input-container>
+                    </div>
+                    <div flex="30">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Celular</label>
+                            <input ng-model="$ctrl.estabelecimento.celular" ui-mask="(99) 9?9999-9999" required />
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row">
+                    <div flex="15">
+                        <md-input-container md-no-float class="md-block">
+                            <label>CEP</label>
+                            <input ng-model="$ctrl.estabelecimento.cep" ng-change="$ctrl.onCepChanged()" ui-mask="99999-999" required />
+                        </md-input-container>
+                    </div>
+                    <div flex="55">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Rua</label>
+                            <input ng-model="$ctrl.estabelecimento.rua" required />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="10">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Nº</label>
+                            <input ng-model="$ctrl.estabelecimento.numero" required />
+                        </md-input-container>
+                    </div>
+
+                    <div flex="20">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Complemento</label>
+                            <input ng-model="$ctrl.estabelecimento.complemento" />
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row">
+                    <div flex="60">
+                        <md-input-container md-no-float class="md-block">
+                            <label>Bairro</label>
+                            <input ng-model="$ctrl.estabelecimento.bairro" required />
+                        </md-input-container>
+                    </div>
+                    <div flex="15">
+
+                        <md-input-container  md-no-float class="md-block">
+                            <label>Estado</label>
+                            <md-select ng-disabled="true" ng-click="$ctrl.manualBlocked()" required name="estado" ng-model="$ctrl.estabelecimento.estado" placeholder="Estado" class="md-no-underline">
+                                <md-option value="estado">Selecione o Estado</md-option>
+                                <md-option value="AC">Acre</md-option>
+                                <md-option value="AL">Alagoas</md-option>
+                                <md-option value="AM">Amazonas</md-option>
+                                <md-option value="AP">Amapá</md-option>
+                                <md-option value="BA">Bahia</md-option>
+                                <md-option value="CE">Ceará</md-option>
+                                <md-option value="DF">Distrito Federal</md-option>
+                                <md-option value="ES">Espírito Santo</md-option>
+                                <md-option value="GO">Goiás</md-option>
+                                <md-option value="MA">Maranhão</md-option>
+                                <md-option value="MT">Mato Grosso</md-option>
+                                <md-option value="MS">Mato Grosso do Sul</md-option>
+                                <md-option value="MG">Minas Gerais</md-option>
+                                <md-option value="PA">Pará</md-option>
+                                <md-option value="PB">Paraíba</md-option>
+                                <md-option value="PR">Paraná</md-option>
+                                <md-option value="PE">Pernambuco</md-option>
+                                <md-option value="PI">Piauí</md-option>
+                                <md-option value="RJ">Rio de Janeiro</md-option>
+                                <md-option value="RN">Rio Grande do Norte</md-option>
+                                <md-option value="RO">Rondônia</md-option>
+                                <md-option value="RS">Rio Grande do Sul</md-option>
+                                <md-option value="RR">Roraima</md-option>
+                                <md-option value="SC">Santa Catarina</md-option>
+                                <md-option value="SE">Sergipe</md-option>
+                                <md-option value="SP">São Paulo</md-option>
+                                <md-option value="TO">Tocantins</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                    </div>
+
+                    <div flex="25">
+                        <md-input-container md-no-float class="md-block" ng-disabled="true">
+                            <label>Cidade</label>
+                            <input ng-click="$ctrl.manualBlocked()" ng-model="$ctrl.estabelecimento.cidade" required readonly />
+                        </md-input-container>
+                    </div>
+
+                    
+                    
+                </div>
+                <div class="text-right">
+                    <md-button type="button" class="md-raised" ui-sref="estabelecimento-list">Cancelar</md-button>
+                    <md-button type="submit" class="md-primary md-raised">Salvar</md-button>
+                </div>
+
+            </form>
+        </md-content>
+
+</main>

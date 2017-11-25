@@ -1,0 +1,148 @@
+<navbar></navbar>
+
+<main>
+
+    <div ng-cloak class="md-inline-form">
+
+        <md-content layout-padding layout="column">
+
+            <form name="estabelecimentoForm" ng-submit="$ctrl.salvar(estabelecimentoForm.$valid)" novalidate>
+                <md-content class="md-padding" layout-xs="column" layout="row">
+                    <div class="wrap" flex="50">
+                        <md-card>
+                            <div flex="50">
+                                <div class="thumb"> <img class="img" style="height: 500px; width: 472px;" src="{{ $ctrl.estabelecimento.imagemDoEvento }}" /></div>
+                                <form action="">
+                                    <label for="upload"><b>Mudar imagem do Estabelecimento</b>
+                        <input type='file' id="upload"></label>
+                                </form>
+                            </div>
+                        </md-card>
+                    </div>
+                    <div flex-xs flex-gt-xs="50" layout="column">
+                        <md-card class="{{::$ctrl.styles.cardestabelecimento}}">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <md-input-container md-no-float class="md-headline">
+                                        <label>Nome do Estabelecimento</label>
+                                        <input ng-model="$ctrl.estabelecimento.nome" name="nome" required minlength="3" maxlength="40" />
+                                        <div ng-messages="novoestabelecimentoForm.nome.$error" style="color:red" role="alert">
+                                            <div ng-message="required">É necessário preencher um nome.</div>
+                                            <div ng-message="minlength">Nome deverá ter no mínimo 3 caractéres.</div>
+                                        </div>
+                                        <span class="md-subhead">Nome Estabelecimento</span>
+                                    </md-input-container>
+
+                                    <md-card-content>
+                                        <md-input-container md-no-float class="md-block">
+                                            <label>Descrição</label>
+                                            <textarea ng-model="$ctrl.estabelecimento.descricao" md-maxlength="150" maxlength="150" required rows="2" md-select-on-focus/></textarea>
+                                        </md-input-container>
+                                    </md-card-content>
+
+                                    <md-card-content>
+                                        <md-input-container md-no-float class="md-block">
+                                            <label>Categoria</label>
+                                            <md-select required ng-readonly="$ctrl.carregandoCategoria" ng-model="$ctrl.estabelecimento.idCategoria" placeholder="Categoria" class="md-no-underline">
+                                                <md-option value="" selected ng-if="$ctrl.carregandoCategoria">Carregando...</md-option>
+                                                <md-option ng-repeat="categoria in $ctrl.categorias" ng-value="categoria.id">{{categoria.nome}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </md-card-content>
+                            </md-card-title>
+
+                        </md-card>
+                    </div>
+                </md-content>
+                <md-content class="md-padding">
+                    <div>
+                        <md-card>
+                            <md-toolbar class="md-raised md-primary">
+                                <div class="md-toolbar-tools">
+                                    <h2 class="md-flex">Contatos</h2>
+                                </div>
+                            </md-toolbar>
+                            <div layout="column" layout-padding ng-cloak>
+                                <div layout="row" layout-align="start center">
+                                    <ng-md-icon icon="phone"></ng-md-icon>
+                                    <md-input-container md-no-float class="md-icon-float md-block">
+                                        <label>Telefone</label>
+                                        <input ng-model="$ctrl.estabelecimento.telefone" required/>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row" layout-align="start center">
+                                    <ng-md-icon icon="smartphone"></ng-md-icon>
+                                    <md-input-container md-no-float class="md-icon-float md-block">
+                                        <label>Celular</label>
+                                        <input ng-model="$ctrl.estabelecimento.celular" />
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </md-card>
+                    </div>
+                </md-content>
+
+                <md-content class="md-padding">
+                    <md-card>
+                        <md-toolbar class="md-raised md-primary">
+                            <div class="md-toolbar-tools">
+                                <h2 class="md-flex">Endereço</h2>
+                            </div>
+                        </md-toolbar>
+                        <div layout="row" layout-padding ng-cloak>
+                            <div flex="55">
+                                <md-input-container md-no-float class="md-block">
+                                    <label>Rua</label>
+                                    <input ng-model="$ctrl.estabelecimento.rua" required />
+                                </md-input-container>
+                            </div>
+                            <div flex="10">
+                                <md-input-container md-no-float class="md-block">
+                                    <label>Nº</label>
+                                    <input ng-model="$ctrl.estabelecimento.numero" type="text" required />
+                                </md-input-container>
+                            </div>
+                            <div flex="15">
+                                <md-input-container md-no-float class="md-block">
+                                    <label>CEP</label>
+                                    <input ng-model="$ctrl.estabelecimento.cep" required />
+                                </md-input-container>
+                            </div>
+                            <div flex="20">
+                                <md-input-container md-no-float class="md-block">
+                                    <label>Bairro</label>
+                                    <input ng-model="$ctrl.estabelecimento.bairro" required />
+                                </md-input-container>
+                            </div>
+
+
+                        </div>
+                    </md-card>
+                </md-content>
+
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <md-card>
+                            <md-toolbar class="md-raised md-primary">
+                                <div class="md-toolbar-tools">
+                                    <h2 class="md-flex">Localização</h2>
+                                </div>
+                            </md-toolbar>
+                            <span class="md-subhead">Colocar google maps</span>
+                            <ng-md-icon icon="location_on"></ng-md-icon>
+                        </md-card>
+                    </div>
+                </md-content>
+
+                <div layout="row" layout-align="end end" class="text-right">
+                    <md-button type="button" class="md-raised" ui-sref="evento-list">Cancelar</md-button>
+                    <md-button type="submit" class="md-primary md-raised">Salvar</md-button>
+                </div>
+
+
+
+
+            </form>
+        </md-content>
+
+</main>

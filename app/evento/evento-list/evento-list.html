@@ -1,0 +1,41 @@
+<div class="{{::$ctrl.styles.default}}" layout="column" layout-align="center center">
+    <md-input-container layout="row">        
+        <input type="text" placeholder="Buscar Evento" ng-model="filtro">
+    </md-input-container>   
+</div>
+    
+<md-list layout="row" layout-wrap layout-xs="column">
+    <md-item ng-repeat="evento in $ctrl.eventos | filter: {nome: filtro}">
+        <md-item-content layout="row" layout-align="start center">
+            <div>
+                <md-card class="{{::$ctrl.styles.cardEvento}}">
+                    <img class="md-card-image {{$ctrl.styles.imagemEvento}}" src="{{ evento.imagem }}" />
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead"><b>Data:</b> {{ evento.data | date }}</span>
+                            <br>
+                            <span class="md-headline">{{ evento.nome }}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ui-sref="evento-view({id: evento.id})" class="md-icon-button">
+                            <ng-md-icon icon="visibility"></ng-md-icon>
+                        </md-button>
+                        <md-button ui-sref="evento-view-edit({id: evento.id})" class="md-icon-button">
+                            <ng-md-icon icon="create"></ng-md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="$ctrl.removerEvento(evento.id)">
+                            <ng-md-icon icon="delete"></ng-md-icon>
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-item-content>
+    </md-item>
+</md-list>
+
+<md-button class="md-fab md-primary md-fab-bottom-right md-icon-button" ui-sref="evento-create">
+    <ng-md-icon icon="add" class="{{::$ctrl.styles.botaoAdd}}"></md-icon>
+</md-button>
+
+
